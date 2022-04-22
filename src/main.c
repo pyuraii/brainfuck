@@ -3,17 +3,7 @@
 
 #include "main.h"
 
-void debug(Interpreter *i) {
-	int j;
-
-	printf("DEBUG AT %u (%d): ", i->pc, i->input[i->pc]);
-	for (j = 0; j < i->size; j++) printf(" %d", i->memory[j]);
-	puts("\n");
-}
-
 int main(int argc, char *argv[]) {
-	setvbuf(stdout, NULL, _IONBF, 0);
-
 	Interpreter i;
 	FILE *f;
 	int length;
@@ -41,8 +31,6 @@ int main(int argc, char *argv[]) {
 	i.state.bracket = 0;
 
 	while (i.pc < length) {
-		// debug(&i);
-
 		switch (i.input[i.pc]) {
 			case '+':
 				i.memory[i.pos]++;
